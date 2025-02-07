@@ -1539,7 +1539,7 @@ struct llm_build_context {
             // self-attention
             {
                 // rope freq factors for llama3; may return nullptr for llama2 and other models
-                #if defined(GGML_USE_CLBLAST)
+                #if defined(GGML_USE_CLBLAST) || defined(GGML_USE_VULKAN)
                 struct ggml_tensor * rope_factors = nullptr; //clblast does not work with rope_factors
                 #else
                 struct ggml_tensor * rope_factors = build_rope_factors(il);
